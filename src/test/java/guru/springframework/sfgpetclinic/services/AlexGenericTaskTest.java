@@ -12,6 +12,7 @@ import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.then;
 import static org.mockito.Mockito.*;
 
+// 3 ways to check Exception thrown using Mockito
 @ExtendWith(MockitoExtension.class)
 class AlexGenericTaskTest {
 
@@ -21,7 +22,6 @@ class AlexGenericTaskTest {
     // Use doThrow() when you want to stub the void method with an exception.
     @Test
     void validateThrowException_1() {
-
         // Set condition when to throw exception. Mimic in Mockito
         // Use doThrow() when you want to stub the void method with an exception.
         doThrow(new RuntimeException("Properly Throw Exception in validateThrowException_1")).when(alexGenericTask).doAction(anyString());
@@ -37,7 +37,6 @@ class AlexGenericTaskTest {
     // give => when => then
     @Test
     void validateThrowException_2() {
-
         // given
         given(alexGenericTask.retrieve(1L)).willThrow(new RuntimeException("Properly Throw Exception in validateThrowException_2"));
 
@@ -52,7 +51,6 @@ class AlexGenericTaskTest {
     // give => when => then
     @Test
     void validateThrowException_3() {
-
         // given
         BDDMockito.willThrow(new RuntimeException("Properly Throw Exception in validateThrowException_2")).given(alexGenericTask).retrieve(anyLong());
 
@@ -60,11 +58,6 @@ class AlexGenericTaskTest {
         assertThrows(RuntimeException.class, () -> alexGenericTask.retrieve(anyLong()));
 
         // then
-        then(alexGenericTask).should().retrieve(anyLong());
+        BDDMockito.then(alexGenericTask).should().retrieve(anyLong());
     }
-
-
-
-
-
 }
