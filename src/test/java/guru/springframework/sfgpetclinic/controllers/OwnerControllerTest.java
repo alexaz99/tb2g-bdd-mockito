@@ -28,6 +28,7 @@ class OwnerControllerTest {
     @Mock
     BindingResult bindingResult;
 
+    // this test has error scenario
     @Test
     void processCreationFormHasErrors() {
         //given
@@ -41,6 +42,7 @@ class OwnerControllerTest {
         assertThat(viewName).isEqualToIgnoringCase(OWNERS_CREATE_OR_UPDATE_OWNER_FORM);
     }
 
+    // this test no error scenario
     @Test
     void processCreationFormNoErrors() {
         //given
