@@ -8,6 +8,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.io.InvalidClassException;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -110,8 +111,11 @@ class SpecialitySDJpaServiceTest {
     void testDoThrow() {
         doThrow(new RuntimeException("boom")).when(specialtyRepository).delete(any());
 
+        // Junit 5 syntax to call to detect
+        // Asserts that execution of the supplied executable throws an exception of the expectedType and returns the exception.
         assertThrows(RuntimeException.class, () -> specialtyRepository.delete(new Speciality()));
 
+        // Verifies certain behavior happened once.
         verify(specialtyRepository).delete(any());
     }
 
