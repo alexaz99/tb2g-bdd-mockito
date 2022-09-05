@@ -154,6 +154,7 @@ class SpecialitySDJpaServiceTest {
         assertThat(returnedSpecialty.getId()).isEqualTo(1L);
     }
 
+    // need to set @Mock(lenient = true) at the begining.
     @Test
     void testSaveLambdaNoMatch() {
         //given
