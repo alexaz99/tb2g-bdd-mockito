@@ -17,6 +17,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 
+/**
+ * When to use
+ * Answer functionality combines arg captor and return from a method based on
+ * multiple if else statements or switch statements for SearchResult.
+ */
 @ExtendWith(MockitoExtension.class)
 class OwnerControllerTest {
 
