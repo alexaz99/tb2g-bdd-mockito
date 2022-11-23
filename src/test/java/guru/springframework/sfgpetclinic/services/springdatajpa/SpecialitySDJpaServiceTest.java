@@ -134,6 +134,9 @@ class SpecialitySDJpaServiceTest {
         then(specialtyRepository).should().delete(any());
     }
 
+    /**
+     * Test save method but only when the description passes "MATCH_ME" string
+     */
     @Test
     void testSaveLambda() {
         //given
@@ -168,7 +171,7 @@ class SpecialitySDJpaServiceTest {
         //need mock to only return on match MATCH_ME string
         given(specialtyRepository.save(argThat(argument -> argument.getDescription().equals(MATCH_ME)))).willReturn(savedSpecialty);
 
-        //when
+        //when. Expectation, because description field does not match, the result should be null
         Speciality returnedSpecialty = service.save(speciality);
 
         //then
