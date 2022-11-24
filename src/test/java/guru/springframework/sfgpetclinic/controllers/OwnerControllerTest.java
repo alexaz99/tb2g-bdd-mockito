@@ -36,15 +36,23 @@ class OwnerControllerTest {
     @Captor
     ArgumentCaptor<String> stringArgumentCaptor;
 
+    /**
+     * An idea is to capture and validate the argument passed during a test.
+     * In this scenario, we pass in OwnerController.processFindForm a call to
+     * List<Owner> results = ownerService.findAllByLastNameLike("%"+ owner.getLastName() + "%");
+     */
     @Test
     void processFindFormWildcardString() {
         //given
         Owner owner = new Owner(1l, "Joe", "Buck");
         List<Owner> ownerList = new ArrayList<>();
         final ArgumentCaptor<String> captor = ArgumentCaptor.forClass(String.class);
+        // This is a call where we make a caal and pass into owner service last name with % + %
+        // set up to capture the argument
         given(ownerService.findAllByLastNameLike(captor.capture())).willReturn(ownerList);
 
-        //when
+        //when. This is a call where we make a caal and pass into owner service last name with % + %
+        // we want this to capture
         String viewName = controller.processFindForm(owner, bindingResult, null);
 
         //then
