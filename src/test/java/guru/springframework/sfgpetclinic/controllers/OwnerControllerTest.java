@@ -64,6 +64,10 @@ class OwnerControllerTest {
         //given
         Owner owner = new Owner(1l, "Joe", "Buck");
         List<Owner> ownerList = new ArrayList<>();
+
+        // this stringArgumentCaptor is using annotation declaration based
+        // instance variable
+        // @Captor ArgumentCaptor<String> stringArgumentCaptor;
         given(ownerService.findAllByLastNameLike(stringArgumentCaptor.capture())).willReturn(ownerList);
 
         //when
