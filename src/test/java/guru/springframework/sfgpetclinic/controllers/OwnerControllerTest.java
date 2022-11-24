@@ -40,9 +40,14 @@ class OwnerControllerTest {
     @Captor
     ArgumentCaptor<String> stringArgumentCaptor;
 
+    // Combine argument captor with willAnswer functionality to test
+    // real if-elseif=-else
+    // the idea is to setup 3 passes for List<Owner> owners, based on the input to test
+    // 3 different flows.
     @BeforeEach
     void setUp() {
         given(ownerService.findAllByLastNameLike(stringArgumentCaptor.capture()))
+                // pass lambda expression invocation
                 .willAnswer(invocation -> {
             List<Owner> owners = new ArrayList<>();
 
